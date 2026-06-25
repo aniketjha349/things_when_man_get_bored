@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ayushi</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6EE;
+    --blush:#FFD3DA;
+    --coral:#FF8C7A;
+    --plum:#5C4159;
+    --gold:#F6C453;
+    --sage:#CFE3CE;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    font-family:'Quicksand', sans-serif;
+    background:
+      radial-gradient(circle at 15% 20%, var(--blush) 0%, transparent 35%),
+      radial-gradient(circle at 85% 15%, var(--sage) 0%, transparent 30%),
+      radial-gradient(circle at 80% 85%, var(--gold) 0%, transparent 25%),
+      var(--cream);
+    color:var(--plum);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    text-align:center;
+    padding:60px 20px 30px;
+  }
+
+  .eyebrow{
+    font-size:0.95rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--coral);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+
+  .title{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:clamp(3rem, 12vw, 6.5rem);
+    line-height:1.05;
+    color:var(--plum);
+    text-shadow: 3px 3px 0 var(--blush);
+  }
+
+  .title span{
+    color:var(--coral);
+    text-shadow: 3px 3px 0 var(--gold);
+  }
+
+  .subtitle{
+    max-width:480px;
+    margin:18px auto 0;
+    font-size:1.05rem;
+    line-height:1.6;
+    color:#7a6275;
+  }
+
+  /* ---------- SURPRISE BUTTON ---------- */
+  .surprise-wrap{
+    display:flex;
+    justify-content:center;
+    margin:36px 0 10px;
+  }
+
+  .surprise-btn{
+    font-family:'Caveat', cursive;
+    font-size:1.7rem;
+    font-weight:700;
+    background:var(--coral);
+    color:#fff;
+    border:none;
+    padding:16px 46px;
+    border-radius:50px;
+    cursor:pointer;
+    box-shadow:0 8px 0 #d9614f, 0 12px 18px rgba(217,97,79,0.25);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    letter-spacing:0.02em;
+  }
+
+  .surprise-btn:hover{ transform: translateY(-2px); }
+  .surprise-btn:active{
+    transform: translateY(6px);
+    box-shadow:0 2px 0 #d9614f, 0 4px 8px rgba(217,97,79,0.25);
+  }
+
+  .surprise-btn.hidden{ display:none; }
+
+  /* ---------- CAKE SCENE ---------- */
+  .cake-scene{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    padding:10px 20px 40px;
+    animation: fadeIn 0.6s ease;
+  }
+
+  .cake-scene.show{ display:flex; }
+
+  @keyframes fadeIn{
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .cake-message{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:clamp(2rem, 7vw, 3.6rem);
+    color:var(--coral);
+    text-align:center;
+    margin-bottom:6px;
+  }
+
+  .cake-subtext{
+    font-size:0.95rem;
+    color:#7a6275;
+    margin-bottom:26px;
+    text-align:center;
+  }
+
+  /* Cake illustration */
+  .cake{
+    position:relative;
+    width:260px;
+    height:230px;
+  }
+
+  .plate{
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:280px;
+    height:18px;
+    background:#fff;
+    border-radius:50%;
+    box-shadow:0 6px 14px rgba(92,65,89,0.15);
+  }
+
+  .layer{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:10px;
+  }
+
+  .layer-bottom{
+    width:240px;
+    height:80px;
+    bottom:18px;
+    background:linear-gradient(180deg,#F9D9A0,#F0BE6F);
+    box-shadow: inset 0 -8px 0 rgba(0,0,0,0.06);
+  }
+
+  .layer-top{
+    width:180px;
+    height:65px;
+    bottom:90px;
+    background:linear-gradient(180deg,#FFC9D2,#FF9FAE);
+    box-shadow: inset 0 -8px 0 rgba(0,0,0,0.06);
+  }
+
+  .drip{
+    position:absolute;
+    bottom:88px;
+    left:50%;
+    transform:translateX(-50%);
+    width:190px;
+    height:18px;
+    background:#FFC9D2;
+    border-radius:0 0 50px 50px;
+  }
+
+  .frosting{
+    position:absolute;
+    bottom:150px;
+    left:50%;
+    transform:translateX(-50%);
+    width:190px;
+    height:24px;
+    background:#fff;
+    border-radius:50%;
+  }
+
+  .sprinkle{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+  }
+
+  .candle{
+    position:absolute;
+    bottom:170px;
+    width:10px;
+    height:38px;
+    background: repeating-linear-gradient(45deg, var(--gold), var(--gold) 6px, #fff 6px, #fff 12px);
+    border-radius:3px;
+    cursor:pointer;
+  }
+
+  .flame{
+    position:absolute;
+    top:-22px;
+    left:50%;
+    transform:translateX(-50%);
+    width:14px;
+    height:22px;
+    background: radial-gradient(circle, #FFF3B0 0%, var(--gold) 45%, var(--coral) 100%);
+    border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 0.6s infinite alternate;
+    transform-origin:bottom center;
+  }
+
+  @keyframes flicker{
+    from{ transform:translateX(-50%) scale(1) rotate(-3deg); }
+    to{ transform:translateX(-50%) scale(1.08) rotate(3deg); }
+  }
+
+  .flame.out{ display:none; }
+
+  .candle-hint{
+    margin-top:18px;
+    font-size:0.9rem;
+    color:#a08c9c;
+    text-align:center;
+    font-style:italic;
+  }
+
+  /* Confetti */
+  .confetti{
+    position:fixed;
+    top:-10px;
+    width:10px;
+    height:16px;
+    opacity:0.9;
+    pointer-events:none;
+    border-radius:2px;
+    animation-name: fall;
+    animation-timing-function: linear;
+  }
+
+  @keyframes fall{
+    to{ transform: translateY(105vh) rotate(540deg); opacity:0.4; }
+  }
+
+  /* ---------- CARDS SECTION ---------- */
+  .cards-section{
+    padding:30px 20px 80px;
+    max-width:1080px;
+    margin:0 auto;
+  }
+
+  .cards-heading{
+    text-align:center;
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:clamp(2rem, 6vw, 3rem);
+    color:var(--plum);
+    margin-bottom:6px;
+  }
+
+  .cards-heading-sub{
+    text-align:center;
+    color:#7a6275;
+    margin-bottom:40px;
+    font-size:1rem;
+  }
+
+  .cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:34px 26px;
+  }
+
+  .card{
+    position:relative;
+    background:#fff;
+    border-radius:6px;
+    padding:28px 22px 24px;
+    box-shadow:0 10px 25px rgba(92,65,89,0.10);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover{
+    transform: translateY(-6px) rotate(0deg) !important;
+    box-shadow:0 16px 30px rgba(92,65,89,0.16);
+  }
+
+  .card:nth-child(1){ transform: rotate(-2deg); }
+  .card:nth-child(2){ transform: rotate(1.5deg); }
+  .card:nth-child(3){ transform: rotate(-1deg); }
+  .card:nth-child(4){ transform: rotate(2deg); }
+  .card:nth-child(5){ transform: rotate(-1.5deg); }
+  .card:nth-child(6){ transform: rotate(1deg); }
+
+  .tape{
+    position:absolute;
+    top:-14px;
+    left:50%;
+    transform:translateX(-50%) rotate(-4deg);
+    width:70px;
+    height:24px;
+    background: rgba(255,211,218,0.85);
+    border:1px solid rgba(255,255,255,0.6);
+  }
+
+  .card-icon{
+    font-size:1.8rem;
+    margin-bottom:10px;
+    display:block;
+  }
+
+  .card h3{
+    font-family:'Caveat', cursive;
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--coral);
+    margin-bottom:8px;
+  }
+
+  .card p{
+    font-size:0.95rem;
+    line-height:1.6;
+    color:#5f4f5c;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    text-align:center;
+    padding:30px 20px 50px;
+    font-family:'Caveat', cursive;
+    font-size:1.4rem;
+    color:var(--plum);
+  }
+
+  footer span{ color:var(--coral); }
+
+  @media (max-width:480px){
+    .cake{ width:220px; }
+    .layer-bottom{ width:200px; }
+    .layer-top{ width:150px; }
+    .drip{ width:160px; }
+    .frosting{ width:160px; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="eyebrow">A little something for</div>
+    <h1 class="title">Happy Birthday<br><span>Ayushi</span> 🎂</h1>
+    <p class="subtitle">
+      Was bored so made it .. Blow the candle lady👇
+    </p>
+  </section>
+
+  <div class="surprise-wrap">
+    <button class="surprise-btn" id="surpriseBtn">✨ Click for a surprise ✨</button>
+  </div>
+
+  <div class="cake-scene" id="cakeScene">
+    <div class="cake-message">Happy Birthday, Ayushi! 🎉</div>
+    <p class="cake-subtext">Make a wish and blow out the candles 🕯️</p>
+
+    <div class="cake">
+      <div class="plate"></div>
+      <div class="layer-bottom"></div>
+      <div class="drip"></div>
+      <div class="layer-top"></div>
+      <div class="frosting"></div>
+
+      <!-- candles -->
+      <div class="candle" style="left:90px;"><div class="flame"></div></div>
+      <div class="candle" style="left:125px;"><div class="flame"></div></div>
+      <div class="candle" style="left:160px;"><div class="flame"></div></div>
+
+      <!-- sprinkles -->
+      <div class="sprinkle" style="background:#FF6F61; bottom:60px; left:100px;"></div>
+      <div class="sprinkle" style="background:#F6C453; bottom:80px; left:140px;"></div>
+      <div class="sprinkle" style="background:#A6D1A8; bottom:50px; left:160px;"></div>
+      <div class="sprinkle" style="background:#FF6F61; bottom:70px; left:180px;"></div>
+      <div class="sprinkle" style="background:#F6C453; bottom:55px; left:130px;"></div>
+    </div>
+
+    <p class="candle-hint">(Hehe)</p>
+  </div>
+
+  <section class="cards-section">
+    <h2 class="cards-heading">A few things I wanted to say...</h2>
+    <p class="cards-heading-sub">I expected it to happen this way</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="tape"></div>
+        <span class="card-icon">🌸</span>
+        <h3>To my favourite person</h3>
+        <p>Out of everyone I've met, you're one of the few who actually makes ordinary days feel special.
+        Just hanging out, talking nonsense, or sitting in silence with you feels comfortable in a way that's hard to find.</p>
+      </div>
+
+      <div class="card">
+        <div class="tape"></div>
+        <span class="card-icon">😂</span>
+        <h3>For all the laughs</h3>
+        <p>I don't think I've laughed with anyone the way I laugh with you. Even the dumbest jokes become
+        unforgettable memories when you're the one telling them. Thank you for always lifting the mood.</p>
+      </div>
+
+      <div class="card">
+        <div class="tape"></div>
+        <span class="card-icon">🤝</span>
+        <h3>For always being there</h3>
+        <p>Through the good days and the messy ones, you've shown up — and that means more than you probably realise.
+        Knowing I have someone like you in my corner makes everything feel a little less heavy.</p>
+      </div>
+
+      <div class="card">
+        <div class="tape"></div>
+        <span class="card-icon">🎈</span>
+        <h3>On this birthday</h3>
+        <p>I hope this year brings you everything you've been quietly hoping for — new adventures, peace of mind,
+        and a lot more reasons to smile. You deserve all of it and more.</p>
+      </div>
+
+      <div class="card">
+        <div class="tape"></div>
+        <span class="card-icon">💌</span>
+        <h3>A little promise</h3>
+        <p>Wherever life takes us, I hope our friendship stays exactly the way it is — easy, honest, and full of
+        inside jokes no one else will ever understand.</p>
+      </div>
+
+      <div class="card">
+        <div class="tape"></div>
+        <span class="card-icon">⭐</span>
+        <h3>Just so you know</h3>
+        <p>You're stronger and more amazing than you give yourself credit for. Don't ever forget that —
+        and don't ever forget how much you're loved, today and always.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Made with <span>timepass</span> for Ayushi By Aniket
+  </footer>
+
+<script>
+  const btn = document.getElementById('surpriseBtn');
+  const scene = document.getElementById('cakeScene');
+
+  btn.addEventListener('click', () => {
+    btn.classList.add('hidden');
+    scene.classList.add('show');
+    launchConfetti();
+    scene.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  // Candle blow-out
+  document.querySelectorAll('.flame').forEach(flame => {
+    flame.addEventListener('click', () => {
+      flame.classList.add('out');
+    });
+  });
+
+  // Confetti burst
+  function launchConfetti(){
+    const colors = ['#FF8C7A','#F6C453','#FFD3DA','#CFE3CE','#5C4159'];
+    for(let i=0; i<80; i++){
+      const conf = document.createElement('div');
+      conf.classList.add('confetti');
+      conf.style.left = Math.random()*100 + 'vw';
+      conf.style.background = colors[Math.floor(Math.random()*colors.length)];
+      conf.style.animationDuration = (2.5 + Math.random()*2) + 's';
+      conf.style.width = (6 + Math.random()*6) + 'px';
+      conf.style.height = (10 + Math.random()*8) + 'px';
+      document.body.appendChild(conf);
+      setTimeout(() => conf.remove(), 5000);
+    }
+  }
+</script>
+
+</body>
+</html>
